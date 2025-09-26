@@ -38,6 +38,8 @@ function App() {
 
     const resultValue = calculateResult(Number(amount), currency);
     setResult(`${Number(amount).toFixed(2)} PLN = ${resultValue.toFixed(2)} ${currency}`);
+
+    setAmount('');
   };
 
   return (
