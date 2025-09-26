@@ -1,0 +1,19 @@
+.form__result {
+    background-color: rgb(168, 14, 44);
+    color: #fff;
+    text-align: center;
+    border-radius: 20px;
+    width: 70%;
+    margin: auto;
+    font-size: 40px;
+    font-weight: 700;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 1);
+    border: 2px solid black;
+    padding: 20px;
+}
+
+.form__result--value {
+    text-decoration: underline;
+    text-shadow: 0px 0px 10px rgb(0 255 24);
+    font-size: 43px;
+}
