@@ -2,8 +2,8 @@ import "./style.css";
 
 const Section = ({ body }) => {
     return (
-        <section>
-            <div className="section__body">
+        <section className="section">
+            <div>
                 {body}
             </div>
         </section>

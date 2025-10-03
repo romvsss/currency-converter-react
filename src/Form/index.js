@@ -5,6 +5,7 @@ const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit
         <form className="form" onSubmit={onFormSubmit}>
             <fieldset className="form__fieldset">
                 <legend className="form__legend">Wprowadź dane</legend>
+                
                 <label className="form__labelText">
                     Wybierz walutę:
                     <select 
@@ -18,25 +19,26 @@ const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit
                         <option value="GBP">FUNT BRYTYJSKI (GBP)</option>
                     </select>
                 </label>
-                <p>
-                    <label className="form__labelText">
-                        Wprowadź kwotę (PLN): 
-                        <input 
-                            className="form__field" 
-                            type="number" 
-                            name="quantity" 
-                            required 
-                            min="0" 
-                            step="any"
-                            value={amount}
-                            onChange={({ target }) => onAmountChange(target.value)}
-                        />
-                    </label>
-                </p>
+                
+                <label className="form__labelText">
+                    Wprowadź kwotę (PLN):
+                    <input 
+                        className="form__field" 
+                        type="number" 
+                        name="quantity" 
+                        required 
+                        min="0" 
+                        step="any"
+                        value={amount}
+                        onChange={({ target }) => onAmountChange(target.value)}
+                        placeholder="0.00"
+                    />
+                </label>
+                
+                <button className="form__button" type="submit">
+                    Przelicz walutę
+                </button>
             </fieldset>
-            <p>
-                <button className="form__button" type="submit">Oblicz!</button>
-            </p>
         </form>
     )
 };
