@@ -4,7 +4,12 @@ import Form from './Form';
 import Result from './Result';
 import Section from './Section';
 import Main from './Main';
-import Footer from './Footer';
+
+const exchangeRates = {
+  EUR: 4.71,
+  USD: 4.33,
+  GBP: 5.37
+};
 
 function App() {
   const [amount, setAmount] = useState('');
@@ -12,25 +17,13 @@ function App() {
   const [result, setResult] = useState('N/A');
 
   const calculateResult = (amount, currency) => {
-    const currencyEUR = 4.71;
-    const currencyUSD = 4.33;
-    const currencyGBP = 5.37;
-
-    switch (currency) {
-      case "EUR":
-        return amount / currencyEUR;
-      case "USD":
-        return amount / currencyUSD;
-      case "GBP":
-        return amount / currencyGBP;
-      default:
-        return 0;
-    }
+    const rate = exchangeRates[currency];
+    return amount / rate;
   };
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-
+    
     if (!amount || amount <= 0) {
       setResult('N/A');
       return;
@@ -38,9 +31,8 @@ function App() {
 
     const resultValue = calculateResult(Number(amount), currency);
     setResult(`${Number(amount).toFixed(2)} PLN = ${resultValue.toFixed(2)} ${currency}`);
-
-    setAmount('');
   };
+
 
   return (
     <>
@@ -65,7 +57,9 @@ function App() {
         />
 
       </Main>
-      <Footer />
+      <footer className="footer">
+        Kursy walut z 03.10.2025
+      </footer>
     </>
   );
 }
