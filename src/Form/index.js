@@ -1,15 +1,19 @@
 import "./style.css";
 
-const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit }) => {
+const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit, currentTime, formatDateTime }) => {
     return (
         <form className="form" onSubmit={onFormSubmit}>
             <fieldset className="form__fieldset">
-                <legend className="form__legend">Wprowadź dane</legend>
-                
+                <div className="form__header">
+                    <legend className="form__legend">Wprowadź dane</legend>
+                    <div className="form__clock">
+                        {formatDateTime(currentTime)}
+                    </div>
+                </div>
                 <label className="form__labelText">
                     Wybierz walutę:
-                    <select 
-                        name="currency" 
+                    <select
+                        name="currency"
                         className="form__field"
                         value={currency}
                         onChange={({ target }) => onCurrencyChange(target.value)}
@@ -19,22 +23,22 @@ const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit
                         <option value="GBP">FUNT BRYTYJSKI (GBP)</option>
                     </select>
                 </label>
-                
+
                 <label className="form__labelText">
                     Wprowadź kwotę (PLN):
-                    <input 
-                        className="form__field" 
-                        type="number" 
-                        name="quantity" 
-                        required 
-                        min="0" 
+                    <input
+                        className="form__field"
+                        type="number"
+                        name="quantity"
+                        required
+                        min="0"
                         step="any"
                         value={amount}
                         onChange={({ target }) => onAmountChange(target.value)}
                         placeholder="0.00"
                     />
                 </label>
-                
+
                 <button className="form__button" type="submit">
                     Przelicz walutę
                 </button>
