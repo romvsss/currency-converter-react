@@ -1,14 +1,13 @@
 import "./style.css";
+import Clock from "../Clock";
 
-const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit, currentTime, formatDateTime }) => {
+const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit }) => {
     return (
         <form className="form" onSubmit={onFormSubmit}>
             <fieldset className="form__fieldset">
                 <div className="form__header">
                     <legend className="form__legend">Wprowadź dane</legend>
-                    <div className="form__clock">
-                        {formatDateTime(currentTime)}
-                    </div>
+                    <Clock />
                 </div>
                 <label className="form__labelText">
                     Wybierz walutę:
