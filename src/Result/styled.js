@@ -1,4 +1,6 @@
-.form__result {
+import styled from "styled-components";
+
+export const Container = styled.div`
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 15px;
@@ -8,15 +10,15 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     max-width: 500px;
     margin: 2rem auto;
-}
+`;
 
-.form__result p {
+export const Text = styled.p`
     font-size: 1.1rem;
     color: #4a5568;
     margin-bottom: 0.5rem;
-}
+`;
 
-.result-value {
+export const Value = styled.span`
     font-size: 1.4rem;
     font-weight: 600;
     color: #667eea;
@@ -24,4 +26,4 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-}
+`;

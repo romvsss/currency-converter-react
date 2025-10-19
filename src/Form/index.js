@@ -1,32 +1,41 @@
-import "./style.css";
+import {
+    StyledForm,
+    Fieldset,
+    FormHeader,
+    Legend,
+    Label,
+    Field,
+    Select,
+    Button
+} from "./styled";
 import Clock from "../Clock";
 
 const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit }) => {
     return (
-        <form className="form" onSubmit={onFormSubmit}>
-            <fieldset className="form__fieldset">
-                <div className="form__header">
-                    <legend className="form__legend">Wprowadź dane</legend>
-                    <Clock />
-                </div>
-                <label className="form__labelText">
+        <StyledForm onSubmit={onFormSubmit}>
+            <Fieldset>
+                <FormHeader>
+                    <Legend>Wprowadź dane</Legend>
+                        <Clock />
+                </FormHeader>
+                
+                <Label>
                     Wybierz walutę:
-                    <select
+                    <Select
                         name="currency"
-                        className="form__field"
                         value={currency}
                         onChange={({ target }) => onCurrencyChange(target.value)}
                     >
                         <option value="EUR">EURO (EUR)</option>
                         <option value="USD">DOLAR AMERYKAŃSKI (USD)</option>
                         <option value="GBP">FUNT BRYTYJSKI (GBP)</option>
-                    </select>
-                </label>
+                    </Select>
+                </Label>
 
-                <label className="form__labelText">
+                <Label>
                     Wprowadź kwotę (PLN):
-                    <input
-                        className="form__field"
+                    <Field
+                        as="input"
                         type="number"
                         name="quantity"
                         required
@@ -36,13 +45,13 @@ const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit
                         onChange={({ target }) => onAmountChange(target.value)}
                         placeholder="0.00"
                     />
-                </label>
+                </Label>
 
-                <button className="form__button" type="submit">
+                <Button type="submit">
                     Przelicz walutę
-                </button>
-            </fieldset>
-        </form>
+                </Button>
+            </Fieldset>
+        </StyledForm>
     )
 };
 

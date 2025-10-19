@@ -1,12 +1,12 @@
-import "./style.css";
+import { Container, Text, Value } from "./styled";
 
 const Result = ({ result }) => {
     return (
-        <div className="form__result">
-            <p>
-                <span>Wartość po przeliczeniu: <span className="result-value">{result}</span></span>
-            </p>
-        </div>
+        <Container>
+            <Text>
+                <span>Wartość po przeliczeniu: <Value>{result}</Value></span>
+            </Text>
+        </Container>
     )
 };
 

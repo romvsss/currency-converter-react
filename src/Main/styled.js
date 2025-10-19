@@ -1,12 +1,14 @@
-main {
+import styled from 'styled-components';
+
+export const StyledMain = styled.main`
     flex: 1;
     padding: 1rem;
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
-}
+`
 
-.header {
+export const Header = styled.header`
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     padding: 2rem;
@@ -16,4 +18,4 @@ main {
     max-width: 600px;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.2);
-}
+`

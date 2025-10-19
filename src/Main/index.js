@@ -1,14 +1,13 @@
-import "./main.css";
-
+import { StyledMain, Header } from "./styled";
 const Main = ({ children }) => (
-    <main>
-        <header class="header">
+    <StyledMain>
+        <Header>
             <h1>
                 Kalkulator walut
             </h1>
-        </header>
+        </Header>
         {children}
-    </main>
+    </StyledMain>
 );
 
 export default Main;

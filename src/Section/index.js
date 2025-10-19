@@ -1,10 +1,10 @@
-import "./style.css";
+import { StyledSection } from "./styled";
 
 const Section = ({ body }) => {
     return (
-        <section className="section">
+        <StyledSection>
                 {body}
-        </section>
+        </StyledSection>
     )
 };
 
