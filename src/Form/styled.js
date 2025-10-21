@@ -7,7 +7,7 @@ export const StyledForm = styled.form`
 
 export const Fieldset = styled.fieldset`
     border: none;
-    background: rgba(255, 255, 255, 0.95);
+    background: ${({ theme }) => theme.colors.background};
     backdrop-filter: blur(10px);
     border-radius: 15px;
     padding: 2rem;
@@ -84,7 +84,7 @@ export const Select = styled.select`
 
 export const Button = styled.button`
     width: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: ${({ theme }) => theme.colors.color};
     color: white;
     border: none;
     padding: 15px;

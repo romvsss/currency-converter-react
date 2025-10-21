@@ -1,3 +1,6 @@
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyles = createGlobalStyle`
 html {
   box-sizing: border-box;
 }
@@ -13,9 +16,10 @@ body {
   background-image: url(https://github.com/romvsss/currencyConverter/blob/master/background/pexels-pixabay-47344.jpg?raw=true);
 }
 
-.footer {
+footer {
   text-align: center;
   color: rgba(36, 36, 36, 0.7);
   font-size: 21px;
   margin-top: auto;
 }
+`;

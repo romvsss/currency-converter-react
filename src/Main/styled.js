@@ -9,7 +9,7 @@ export const StyledMain = styled.main`
 `
 
 export const Header = styled.header`
-    background: rgba(255, 255, 255, 0.95);
+    background: ${({ theme }) => theme.colors.background};
     backdrop-filter: blur(10px);
     padding: 2rem;
     margin: 2rem auto;

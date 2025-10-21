@@ -1,9 +1,11 @@
-import './index.css';
 import { useState } from 'react';
+import { ThemeProvider } from 'styled-components';
 import Form from './Form';
 import Result from './Result';
-import Section from './Section';
 import Main from './Main';
+import { StyledSection } from './Section/styled';
+import { GlobalStyles } from './globalStyles';
+import { theme } from './theme';
 
 const exchangeRates = {
   EUR: 4.71,
@@ -34,31 +36,27 @@ function App() {
   };
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
       <Main>
-        <Section
-          body={
-            <Form
-              amount={amount}
-              currency={currency}
-              onAmountChange={setAmount}
-              onCurrencyChange={setCurrency}
-              onFormSubmit={onFormSubmit}
-            />
-          }
-        />
+        <StyledSection>
+          <Form
+            amount={amount}
+            currency={currency}
+            onAmountChange={setAmount}
+            onCurrencyChange={setCurrency}
+            onFormSubmit={onFormSubmit}
+          />
+        </StyledSection>
 
-        <Section
-          body={
-            <Result result={result} />
-          }
-        />
-
+        <StyledSection>
+          <Result result={result} />
+        </StyledSection>
       </Main>
-      <footer className="footer">
+      <footer>
         Kursy walut z dnia 03.10.2025
       </footer>
-    </>
+    </ThemeProvider>
   );
 }
 
