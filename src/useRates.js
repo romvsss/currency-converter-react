@@ -14,13 +14,11 @@ export const useRates = () => {
             setLoading(true);
             setError(null);
 
-            // Symulacja ładowania na 1 sekundę
             await new Promise(resolve => setTimeout(resolve, 2000));
 
             const response = await axios.get(API_URL);
 
             if (response.data && response.data.data) {
-                // Konwersja formatu API na nasze potrzeby
                 const formattedRates = {};
                 Object.keys(response.data.data).forEach(currency => {
                     formattedRates[currency] = 1 / response.data.data[currency].value;
