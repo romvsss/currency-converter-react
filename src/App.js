@@ -4,23 +4,22 @@ import Form from './Form';
 import Result from './Result';
 import Main from './Main';
 import { StyledSection } from './Section/styled';
-import { GlobalStyles } from './globalStyles';
+import { GlobalStyles, Footer } from './globalStyles';
 import { theme } from './theme';
-
-const exchangeRates = {
-  EUR: 4.71,
-  USD: 4.33,
-  GBP: 5.37
-};
+import { useRates } from './useRates';
 
 function App() {
   const [amount, setAmount] = useState('');
   const [currency, setCurrency] = useState('EUR');
   const [result, setResult] = useState('N/A');
 
+  const { rates, loading, error, lastUpdate } = useRates();
+
   const calculateResult = (amount, currency) => {
-    const rate = exchangeRates[currency];
-    return amount / rate;
+    if (!rates || !rates[currency]) {
+      return null;
+    }
+    return amount * rates[currency];
   };
 
   const onFormSubmit = (event) => {
@@ -31,9 +30,24 @@ function App() {
       return;
     }
 
+    if (!rates) {
+      setResult('Brak kursów walut');
+      return;
+    }
+
     const resultValue = calculateResult(Number(amount), currency);
     setResult(`${Number(amount).toFixed(2)} PLN = ${resultValue.toFixed(2)} ${currency}`);
   };
+
+  const formatDate = (date) => {
+    if (!date) return '';
+    return date.toLocaleDateString('pl-PL', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+  };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -46,6 +60,9 @@ function App() {
             onAmountChange={setAmount}
             onCurrencyChange={setCurrency}
             onFormSubmit={onFormSubmit}
+            loading={loading}
+            error={error}
+            lastUpdate={lastUpdate}
           />
         </StyledSection>
 
@@ -53,9 +70,12 @@ function App() {
           <Result result={result} />
         </StyledSection>
       </Main>
-      <footer>
-        Kursy walut z dnia 03.10.2025
-      </footer>
+      <Footer>
+        {lastUpdate 
+          ? `Kursy walut z dnia ${formatDate(lastUpdate)}` 
+          : 'Ładowanie kursów...'
+        }
+      </Footer>
     </ThemeProvider>
   );
 }

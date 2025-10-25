@@ -104,3 +104,21 @@ export const Button = styled.button`
         transform: translateY(0);
     }
 `;
+
+export const LoadingMessage = styled.div`
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: center;
+`;
+
+export const ErrorMessage = styled.div`
+    background: #ffebee;
+    color: #d32f2f;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: center;
+`;

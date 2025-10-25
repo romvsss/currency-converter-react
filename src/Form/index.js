@@ -6,11 +6,13 @@ import {
     Label,
     Field,
     Select,
-    Button
+    Button,
+    LoadingMessage,
+    ErrorMessage
 } from "./styled";
 import Clock from "../Clock";
 
-const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit }) => {
+const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit, loading, error }) => {
     return (
         <StyledForm onSubmit={onFormSubmit}>
             <Fieldset>
@@ -18,13 +20,15 @@ const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit
                     <Legend>Wprowadź dane</Legend>
                         <Clock />
                 </FormHeader>
-                
+                {error && <ErrorMessage>{error}</ErrorMessage>}
+                {loading && <LoadingMessage>Ładowanie kursów...</LoadingMessage>}
                 <Label>
                     Wybierz walutę:
                     <Select
                         name="currency"
                         value={currency}
                         onChange={({ target }) => onCurrencyChange(target.value)}
+                        disabled={loading}
                     >
                         <option value="EUR">EURO (EUR)</option>
                         <option value="USD">DOLAR AMERYKAŃSKI (USD)</option>
@@ -44,11 +48,12 @@ const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit
                         value={amount}
                         onChange={({ target }) => onAmountChange(target.value)}
                         placeholder="0.00"
+                        disabled={loading}
                     />
                 </Label>
 
                 <Button type="submit">
-                    Przelicz walutę
+                    {loading ? 'Ładowanie...' : 'Przelicz walutę'}
                 </Button>
             </Fieldset>
         </StyledForm>

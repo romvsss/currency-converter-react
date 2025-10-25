@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, styled } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
 html {
@@ -15,11 +15,14 @@ body {
   font-family: "Source Sans Pro", sans-serif;
   background-image: url(https://github.com/romvsss/currencyConverter/blob/master/background/pexels-pixabay-47344.jpg?raw=true);
 }
+`;
 
-footer {
+export const Footer = styled.footer`
   text-align: center;
-  color: rgba(36, 36, 36, 0.7);
-  font-size: 21px;
-  margin-top: auto;
-}
+  color: white;
+  text-shadow: 
+    -1px -1px 0 #000000ff,
+     1px -1px 0 #000000ff,
+    -1px  1px 0 #000000ff,
+     1px  1px 0 #000000ff;
 `;
