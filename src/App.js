@@ -63,6 +63,7 @@ function App() {
             loading={loading}
             error={error}
             lastUpdate={lastUpdate}
+            rates={rates}
           />
         </StyledSection>
 

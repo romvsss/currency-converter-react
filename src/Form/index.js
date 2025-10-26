@@ -12,13 +12,19 @@ import {
 } from "./styled";
 import Clock from "../Clock";
 
-const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit, loading, error }) => {
+const currencyNames = {
+    EUR: 'EURO',
+    USD: 'DOLAR AMERYKAŃSKI',
+    GBP: 'FUNT BRYTYJSKI'
+};
+
+const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit, loading, error, rates }) => {
     return (
         <StyledForm onSubmit={onFormSubmit}>
             <Fieldset>
                 <FormHeader>
                     <Legend>Wprowadź dane</Legend>
-                        <Clock />
+                    <Clock />
                 </FormHeader>
                 {error && <ErrorMessage>{error}</ErrorMessage>}
                 {loading && <LoadingMessage>Ładowanie kursów...</LoadingMessage>}
@@ -28,11 +34,13 @@ const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit
                         name="currency"
                         value={currency}
                         onChange={({ target }) => onCurrencyChange(target.value)}
-                        disabled={loading}
+                        disabled={loading || !rates}
                     >
-                        <option value="EUR">EURO (EUR)</option>
-                        <option value="USD">DOLAR AMERYKAŃSKI (USD)</option>
-                        <option value="GBP">FUNT BRYTYJSKI (GBP)</option>
+                        {rates && Object.keys(rates).map(currencyCode => (
+                            <option key={currencyCode} value={currencyCode}>
+                                {currencyNames[currencyCode]} ({currencyCode})
+                            </option>
+                        ))}
                     </Select>
                 </Label>
 
@@ -48,11 +56,11 @@ const Form = ({ amount, currency, onAmountChange, onCurrencyChange, onFormSubmit
                         value={amount}
                         onChange={({ target }) => onAmountChange(target.value)}
                         placeholder="0.00"
-                        disabled={loading}
+                        disabled={loading || !rates}
                     />
                 </Label>
 
-                <Button type="submit">
+                <Button type="submit" disabled={loading || !rates}>
                     {loading ? 'Ładowanie...' : 'Przelicz walutę'}
                 </Button>
             </Fieldset>
